@@ -1,4 +1,4 @@
-from .vec_env import VecEnvWrapper
+from jax_muzero.vec_env.vec_env import VecEnvWrapper
 import numpy as np
 from gym import spaces
 

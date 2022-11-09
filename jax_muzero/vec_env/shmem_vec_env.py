@@ -4,12 +4,11 @@ An interface for asynchronous vectorized environments.
 
 import logging
 import multiprocessing as mp
-from gym.wrappers.step_api_compatibility import StepAPICompatibility
 import numpy as np
-from .vec_env import VecEnv, CloudpickleWrapper
+from jax_muzero.vec_env.vec_env import VecEnv, CloudpickleWrapper
 import ctypes
 
-from .util import dict_to_obs, obs_space_info, obs_to_dict
+from jax_muzero.vec_env.util import dict_to_obs, obs_space_info, obs_to_dict
 import gym
 
 class ResetNoInfo(gym.Wrapper):

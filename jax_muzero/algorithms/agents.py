@@ -5,9 +5,9 @@ import jax
 import jax.numpy as jnp
 import rlax
 
-from algorithms import haiku_nets as nets
-from algorithms import utils
-from algorithms.types import ActorOutput, AgentOutput, Params, Tree
+from jax_muzero.algorithms import haiku_nets as nets
+from jax_muzero.algorithms import utils
+from jax_muzero.algorithms.types import ActorOutput, AgentOutput, Params, Tree
 
 
 class Agent(object):

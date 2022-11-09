@@ -1,7 +1,6 @@
 import numpy as np
-from gym.wrappers.step_api_compatibility import StepAPICompatibility
-from .vec_env import VecEnv
-from .util import copy_obs_dict, dict_to_obs, obs_space_info
+from jax_muzero.vec_env.vec_env import VecEnv
+from jax_muzero.vec_env.util import copy_obs_dict, dict_to_obs, obs_space_info
 import gym
 
 class ResetNoInfo(gym.Wrapper):

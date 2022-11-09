@@ -5,7 +5,7 @@ import chex
 import jax
 import numpy as np
 
-from algorithms.types import ActorOutput, Params
+from jax_muzero.algorithms.types import ActorOutput, Params
 
 
 class Actor(object):
