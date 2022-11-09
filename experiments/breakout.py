@@ -48,9 +48,18 @@ if __name__ == '__main__':
         'evaluate_episodes': 32,
         'log_interval': 1,
         'total_frames': 100_000,
+
+        'wandb': {
+            'project': None,
+            'entity': None,
+        }
     }
 
     log_filename = os.path.basename(__file__).split('.')[0]
+    callbacks = []
+    if config["wandb"]["project"] is not None:
+        callbacks.append(WandbLoggerCallback(**config["wandb"], config=config))
+        
     analysis = tune.run(
         Experiment,
         name=log_filename,
@@ -61,5 +70,5 @@ if __name__ == '__main__':
         resources_per_trial={
             'gpu': 1,
         },
-        callbacks=[WandbLoggerCallback(project="jaxmuzero", entity="raffael", config=config)]
+        callbacks=callbacks
     )
