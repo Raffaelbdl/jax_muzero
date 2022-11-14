@@ -2,47 +2,18 @@ import os
 
 
 from ray import tune
+from ray.air.callbacks.wandb import WandbLoggerCallback
 
 
-from algorithms.muzero import Experiment
-
-
-ENV_NAMES = [
-    'Alien',
-    'Amidar',
-    'Assault',
-    'Asterix',
-    'BankHeist',
-    'BattleZone',
-    'Boxing',
-    'Breakout',
-    'ChopperCommand',
-    'CrazyClimber',
-    'DemonAttack',
-    'Freeway',
-    'Frostbite',
-    'Gopher',
-    'Hero',
-    'Jamesbond',
-    'Kangaroo',
-    'Krull',
-    'KungFuMaster',
-    'MsPacman',
-    'Pong',
-    'PrivateEye',
-    'Qbert',
-    'RoadRunner',
-    'Seaquest',
-    'UpNDown',
-]
+from jax_muzero.algorithms.muzero import Experiment
 
 
 if __name__ == '__main__':
     config = {
-        'env_id': tune.grid_search([env_id for env_id in ENV_NAMES]),
+        'env_id': 'Breakout',
         'env_kwargs': {},
         'seed': 42,
-        'num_envs': 1,
+        'num_envs': 10,
         'unroll_steps': 5,
         'td_steps': 5,
         'max_search_depth': None,
@@ -75,10 +46,20 @@ if __name__ == '__main__':
         'target_update_interval': 200,
 
         'evaluate_episodes': 32,
-        'log_interval': 4_000,
+        'log_interval': 1,
         'total_frames': 100_000,
+
+        'wandb': {
+            'project': None,
+            'entity': None,
+        }
     }
+
     log_filename = os.path.basename(__file__).split('.')[0]
+    callbacks = []
+    if config["wandb"]["project"] is not None:
+        callbacks.append(WandbLoggerCallback(**config["wandb"], config=config))
+        
     analysis = tune.run(
         Experiment,
         name=log_filename,
@@ -89,4 +70,5 @@ if __name__ == '__main__':
         resources_per_trial={
             'gpu': 1,
         },
+        callbacks=callbacks
     )

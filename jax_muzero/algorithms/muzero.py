@@ -12,13 +12,13 @@ import optax
 from ray import tune
 import rlax
 
-from algorithms import actors
-from algorithms import agents
-from algorithms import replay_buffers as replay
-from algorithms import utils
-from algorithms.types import ActorOutput, Params
-from environments import atari
-import vec_env
+from jax_muzero.algorithms import actors
+from jax_muzero.algorithms import agents
+from jax_muzero.algorithms import replay_buffers as replay
+from jax_muzero.algorithms import utils
+from jax_muzero.algorithms.types import ActorOutput, Params
+from jax_muzero.environments import atari
+import jax_muzero.vec_env as vec_env
 
 
 

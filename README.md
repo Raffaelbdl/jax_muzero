@@ -1,5 +1,7 @@
 # JAX MuZero
 
+🚨 This fork makes the repository work for Python 3.10, not using conda, and makes a package instead of many separated folder 🚨
+
 ## Installation
 Follow [jax installation](https://github.com/google/jax/#installation), then: 
 ```shell
@@ -13,7 +15,7 @@ pip install gym[atari]
 ## Training
 Run the following command for learning to play the Atari game Breakout:
 ```bash
-python -m experiments.breakout
+python -m jax_muzero.experiments.breakout
 ```
 
 
