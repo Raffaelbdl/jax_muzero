@@ -1,7 +1,4 @@
 # JAX MuZero
-A JAX implementation of the [MuZero agent](https://www.nature.com/articles/s41586-020-03051-4.pdf).
-
-Everything is implemented in [JAX](https://github.com/google/jax), including the MCTS. The entire search process can be jitted and can run on accelerators such as GPUs.
 
 ## Installation
 Follow [jax installation](https://github.com/google/jax/#installation), then: 
